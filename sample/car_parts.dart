@@ -1,4 +1,4 @@
-import 'pattern_matching.dart';
+import '../pattern_matching.dart';
 
 abstract class CarPart with PatternMatchable<CarPartType> {}
 
