@@ -1,0 +1,23 @@
+{
+	"pattern-matchable": {
+		"scope": "dart",
+		"prefix": "patternMatchable",
+		"description": "Creates a pair of a PatternMatchable abstract class and a TypeConverter enum",
+		"body": [
+			"abstract class $1 with PatternMatchable<$1Type> {}",
+			"",
+			"enum $1Type<T extends $1> with TypeConverter<T> {",
+			"\t$2<${2/(.*)/${1:/pascalcase}/}>(),",
+			"\t$3<${3/(.*)/${1:/pascalcase}/}>(),",
+			"}",
+			"",
+			"class ${2/(.*)/${1:/pascalcase}/} implements $1 {",
+			"\t$1Type get entityType => $1Type.$2;",
+			"}",
+			"",
+			"class ${3/(.*)/${1:/pascalcase}/} implements $1 {",
+			"\t$1Type get entityType => $1Type.$3;",
+			"}",
+		]
+	},
+}
