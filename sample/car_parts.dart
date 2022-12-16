@@ -4,7 +4,7 @@ abstract class CarPart with PatternMatchable<CarPartType> {}
 
 enum CarPartType<T extends CarPart> with TypeConverter<T> {
   engine<Engine>(),
-  transmission<Transmission>();
+  transmission<Transmission>(),
 }
 
 class Engine implements CarPart {
