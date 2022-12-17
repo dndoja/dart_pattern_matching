@@ -1,22 +1,22 @@
 {
-	"pattern-matchable": {
+	"sealed-class": {
 		"scope": "dart",
-		"prefix": "patternMatchable",
-		"description": "Creates a pair of a PatternMatchable abstract class and a TypeConverter enum",
+		"prefix": "sealed",
+		"description": "Creates a pair of a Sealed abstract class and a TypeConverter enum",
 		"body": [
-			"abstract class $1 with PatternMatchable<$1Type> {}",
+			"abstract class $1 with Sealed<$1Type> {}",
 			"",
-			"enum $1Type<T extends $1> with TypeConverter<T> {",
+			"enum $1Type<T extends $1> with TypeConverter<$1,T> {",
 			"\t$2<${2/(.*)/${1:/pascalcase}/}>(),",
 			"\t$3<${3/(.*)/${1:/pascalcase}/}>(),",
 			"}",
 			"",
 			"class ${2/(.*)/${1:/pascalcase}/} implements $1 {",
-			"\t$1Type get entityType => $1Type.$2;",
+			"\t$1Type get type => $1Type.$2;",
 			"}",
 			"",
 			"class ${3/(.*)/${1:/pascalcase}/} implements $1 {",
-			"\t$1Type get entityType => $1Type.$3;",
+			"\t$1Type get type => $1Type.$3;",
 			"}",
 		]
 	},

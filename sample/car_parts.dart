@@ -1,8 +1,8 @@
-import '../pattern_matching.dart';
+import 'package:pattern_matching/pattern_matching.dart';
 
-abstract class CarPart with PatternMatchable<CarPartType> {}
+abstract class CarPart with Sealed<CarPartType> {}
 
-enum CarPartType<T extends CarPart> with TypeConverter<T> {
+enum CarPartType<T extends CarPart> with TypeConverter<CarPart, T> {
   engine<Engine>(),
   transmission<Transmission>(),
 }
@@ -15,7 +15,7 @@ class Engine implements CarPart {
   final int cylinders;
   final int horsepower;
 
-  CarPartType get entityType => CarPartType.engine;
+  CarPartType get type => CarPartType.engine;
 }
 
 class Transmission implements CarPart {
@@ -26,5 +26,5 @@ class Transmission implements CarPart {
   final int gears;
   final bool isManual;
 
-  CarPartType get entityType => CarPartType.transmission;
+  CarPartType get type => CarPartType.transmission;
 }
