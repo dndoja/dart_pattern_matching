@@ -18,15 +18,15 @@ class Car {
 String _getDescriptionForCarPart(CarPart part) {
   switch (part.type) {
     case CarPartType.engine:
-      final Engine engine = CarPartType.engine.cast(part);
+      final Engine engine = CarPartType.engine << part;
 
       return 'A ${engine.cylinders} cylinder engine '
           'which makes ${engine.horsepower}hp.';
     case CarPartType.transmission:
-      return CarPartType.transmission.using(part).run(
-            (transmission) => 'A ${transmission.gears} speed '
-                '${transmission.isManual ? 'manual' : 'automatic'} transmission.',
-          );
+      return CarPartType.transmission.using(part).call(
+        (transmission) => 'A ${transmission.gears} speed '
+            '${transmission.isManual ? 'manual' : 'automatic'} transmission.',
+      );
   }
 }
 

@@ -3,14 +3,11 @@ mixin Sealed<T extends TypeConverter<dynamic, dynamic>> {
 }
 
 mixin TypeConverter<TBase extends Sealed, T extends TBase> {
-  T cast(TBase value) => value as T;
+  T cast(TBase val) => val as T;
 
-  _Runnable<T> using(TBase value) => _Runnable(cast(value));
+  T operator <<(TBase val) => cast(val);
+
+  Runnable<TResult, T> using<TResult>(TBase val) => (fn) => fn.call(cast(val));
 }
 
-class _Runnable<T> {
-  const _Runnable(this.value);
-  final T value;
-
-  TReturn run<TReturn>(TReturn Function(T) fn) => fn(value);
-}
+typedef Runnable<TResult, T> = TResult Function(TResult Function(T value));
